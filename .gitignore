@@ -1,0 +1,31 @@
+.gradle
+build
+.idea/
+.project
+.settings/
+.classpath
+nbactions.xml
+nb-configuration.xml
+nbproject/
+*.class
+# Gradle / build output
+out/
+*.log
+
+# IDEs
+*.iml
+*.ipr
+*.iws
+.vscode/
+.nb-gradle/
+.tmp
+.factorypath
+.apt_generated/
+
+# OS junk
+Thumbs.db
+.DS_Store
+desktop.ini
+
+# Secrets (defensive)
+credentials.properties
