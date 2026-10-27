@@ -2,14 +2,22 @@
 
 A RuneLite plugin that saves a PNG of the game canvas with every RuneLite overlay removed. Press a hotkey and you get just the game itself: no title bar, no side panel, no other windows, and none of the overlays drawn by plugins (Ground Items, Player Indicators, NPC Indicators, tile markers, infoboxes, tooltips and so on). Everything the vanilla game draws on its own, such as your character, NPCs, HP bars, hitsplats, overhead text and prayers, chat, inventory and minimap, stays in the picture.
 
+## Why use it
+
+Clean Screenshot is built for sharing and content creation. A normal screenshot captures everything RuneLite draws on top of the game, which is rarely what you want to show people.
+
+- **Content creation.** Thumbnails, guides, videos, social posts and wiki images look far more polished when they are not covered in plugin overlays, markers and indicators.
+- **PvP battle screenshots.** When you are fighting with Ground Items and Player Indicators switched on, the screen fills up with item labels, name tags and colored player highlights. Press the hotkey and you get a clean shot of the fight itself, with hitsplats, overhead prayers and gear still visible, and none of the loot text or player indicators cluttering the view.
+- **No need to change your setup.** You keep playing with all your plugins enabled. The plugin hides the overlays for a split second, takes the picture, and puts them straight back, so you never have to toggle plugins on and off just to get a presentable image.
+
 ## Features
 
 - Captures the game canvas only, not the RuneLite window frame or side panel.
-- Strips all RuneLite overlays from the image.
+- Strips all RuneLite overlays from the image, including ground item labels and player indicators.
 - Keeps everything the vanilla game renders itself.
 - Saves timestamped files and never overwrites an existing screenshot.
 - Optional notification when a screenshot is taken.
-- Optional copy of the image to the clipboard.
+- Optional copy of the image to the clipboard, handy for pasting straight into Discord or a social post.
 
 ## How to use
 
