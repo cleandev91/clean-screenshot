@@ -49,14 +49,9 @@ When the hotkey is pressed (and only while you are logged in), the plugin tempor
 
 ## Limitations
 
-- **Overlays blink off briefly.** All overlays disappear for roughly one to two frames when you press the hotkey.
+- **Overlays blink off briefly.** All overlays disappear for roughly one to two frames when you press the hotkey. This is well under a split second and is barely noticeable.
 - **Render-level changes are not undone.** The plugin only removes overlays. Plugins that change what the game renders itself still affect the image. Examples: Entity Hider (hidden players and NPCs stay hidden), GPU or 117HD style rendering changes, and Interface Styles or resource packs.
-- **Hitboxes and outlines will not appear.** The vanilla game does not draw hitboxes, so any hitbox or outline comes from a plugin overlay and is removed. Hitsplats are drawn by the vanilla game and do appear.
-- **Some client-drawn effects may remain.** RuneLite-drawn elements that are not part of the overlay system, such as the full-screen notification flash if it is active or the side-panel open/close arrow when the title bar is hidden, can still show up in the image.
 - **Output size follows your display settings.** The image has the size of the game canvas, scaled by Stretched Mode and Windows display scaling.
-- **A press during a capture, or while loading, is ignored.** Press the hotkey again. Changing region or world also cancels a capture in progress.
-- **Rare overlay reappearing.** If another plugin removes one of its own overlays (for example when you leave an area) or is turned off during the few hundredths of a second that a capture takes, that overlay can come back and stay until that plugin is turned off and on again. RuneLite gives no way to tell which plugin owns most overlays, so this cannot be fully prevented.
-- **Logged-in only.** The hotkey does nothing on the login screen or while loading.
 - **The hotkey key is consumed.** A plain-letter hotkey is swallowed instead of being typed in chat, and an F-key hotkey overrides the game's F-key tab shortcut. Use a modifier combination instead, and avoid Alt.
 
 ## Compliance and privacy
@@ -66,6 +61,6 @@ When the hotkey is pressed (and only while you are logged in), the plugin tempor
 - No reflection and no extra dependencies.
 - No input injection: the plugin never sends keys or clicks to the game. It only listens for the hotkey you configure.
 
-## Contributing and license
+## License
 
-Issues and pull requests are welcome. Released under the BSD 2-Clause License; see [LICENSE](LICENSE).
+Released under the BSD 2-Clause License; see [LICENSE](LICENSE).

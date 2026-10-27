@@ -28,6 +28,16 @@ import net.runelite.client.util.HotkeyListener;
 import net.runelite.client.util.ImageCapture;
 import net.runelite.client.util.ImageUtil;
 
+/**
+ * Saves a screenshot of the game view without plugin overlays.
+ * <p>
+ * Overlays are painted into the same buffer as the game, so they cannot be removed from a
+ * finished frame. Instead, when the hotkey is pressed the overlays are detached from the
+ * {@link OverlayManager}, the plugin waits for a frame that was drawn without them, and the
+ * overlays are re-attached before the image is saved. Overlays on the keep list (by default
+ * the FPS, ping and world displays) stay attached. Overlays are always put back: when the
+ * frame arrives, after a short timeout, when the game state leaves LOGGED_IN, or on shutdown.
+ */
 @Slf4j
 @PluginDescriptor(
 	name = "Clean Screenshot",
