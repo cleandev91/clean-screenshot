@@ -55,7 +55,7 @@ When the hotkey is pressed (and only while you are logged in), the plugin tempor
 - **Some client-drawn effects may remain.** RuneLite-drawn elements that are not part of the overlay system, such as the full-screen notification flash if it is active or the side-panel open/close arrow when the title bar is hidden, can still show up in the image.
 - **Output size follows your display settings.** The image has the size of the game canvas, scaled by Stretched Mode and Windows display scaling.
 - **A press during a capture, or while loading, is ignored.** Press the hotkey again. Changing region or world also cancels a capture in progress.
-- **Rare overlay reappearing.** If another plugin removes one of its overlays, or is disabled, within the same two frames as a capture, that overlay may reappear until the plugin is toggled off and on.
+- **Rare overlay reappearing.** If another plugin removes one of its own overlays (for example when you leave an area) or is turned off during the few hundredths of a second that a capture takes, that overlay can come back and stay until that plugin is turned off and on again. RuneLite gives no way to tell which plugin owns most overlays, so this cannot be fully prevented.
 - **Logged-in only.** The hotkey does nothing on the login screen or while loading.
 - **The hotkey key is consumed.** A plain-letter hotkey is swallowed instead of being typed in chat, and an F-key hotkey overrides the game's F-key tab shortcut. Use a modifier combination instead, and avoid Alt.
 

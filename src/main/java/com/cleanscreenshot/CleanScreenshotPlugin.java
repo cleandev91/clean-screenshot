@@ -70,6 +70,8 @@ public class CleanScreenshotPlugin extends Plugin
 	@Inject
 	private CleanScreenshotConfig config;
 
+	// hidden, capturing and framesWaited are guarded by this: capture runs on the client
+	// thread, but shutDown runs on the EDT
 	private final List<Overlay> hidden = new ArrayList<>();
 	// Set between startUp and shutDown, so a hotkey press queued on the client thread
 	// cannot detach overlays after the plugin has been disabled
@@ -121,7 +123,7 @@ public class CleanScreenshotPlugin extends Plugin
 	}
 
 	/**
-	 * Detaches every overlay from the overlay manager. Client thread.
+	 * Detaches every overlay that is not on the keep list. Client thread.
 	 */
 	private synchronized void beginCapture()
 	{
@@ -136,14 +138,28 @@ public class CleanScreenshotPlugin extends Plugin
 		framesWaited = 0;
 		hidden.clear();
 		final Set<String> keep = parseKeepList(config.keepOverlays());
-		// Every overlay not on the keep list is detached and remembered
-		overlayManager.removeIf(overlay -> !isKept(overlay, keep) && hidden.add(overlay));
+		try
+		{
+			// Every overlay not on the keep list is detached and remembered
+			overlayManager.removeIf(overlay -> !isKept(overlay, keep) && hidden.add(overlay));
+		}
+		catch (RuntimeException ex)
+		{
+			// Never leave the overlay list half detached
+			log.warn("Unable to detach overlays for clean capture", ex);
+			restoreOverlays();
+			return;
+		}
 		log.debug("Detached {} overlays for clean capture", hidden.size());
 	}
 
 	private static Set<String> parseKeepList(String csv)
 	{
 		final Set<String> names = new HashSet<>();
+		if (csv == null)
+		{
+			return names;
+		}
 		for (String name : csv.split(","))
 		{
 			final String trimmed = name.trim();
@@ -159,7 +175,8 @@ public class CleanScreenshotPlugin extends Plugin
 	{
 		// Most overlays do not declare an owning plugin, so they are matched by their own
 		// name (by default the overlay's class name)
-		return keep.contains(overlay.getName().toLowerCase(Locale.ROOT));
+		final String name = overlay.getName();
+		return name != null && keep.contains(name.toLowerCase(Locale.ROOT));
 	}
 
 	/**
